@@ -145,12 +145,103 @@ export const brokerMetrics = {
   revenue: "$12,834"
 };
 
-export const blogPosts = [
-  "Top Luxury Villas in Goa for Private Coastal Living",
-  "Best Areas for Luxury Living in Mumbai",
-  "Why Farmhouse Estates Are Rising in Gujarat",
-  "How Brokers Can Present Premium Listings Better"
+export const journalPosts = [
+  {
+    title: "Top Luxury Villas in Goa for Coastal Living",
+    category: "Coastal Living",
+    image:
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85",
+    excerpt: "Private courtyards, sea-facing decks, and a slower architectural rhythm define Goa's most desirable homes."
+  },
+  {
+    title: "Best Areas for Luxury Living in Mumbai",
+    category: "City Guide",
+    image:
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1200&q=85",
+    excerpt: "From bay-facing penthouses to quiet heritage addresses, Mumbai's prime pockets reward restraint and rarity."
+  },
+  {
+    title: "Why Luxury Farmhouses Are Rising in Gujarat",
+    category: "Market Notes",
+    image:
+      "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=85",
+    excerpt: "Weekend estates are evolving into private lifestyle compounds shaped around privacy, landscape, and hosting."
+  }
 ];
+
+export const blogPosts = journalPosts.map((post) => post.title);
 
 export const locations = ["Goa", "Mumbai", "Ahmedabad", "Alibaug", "Dubai", "New Delhi"];
 export const categories = ["Luxury villas", "Penthouses", "Farmhouses", "Beach houses"];
+
+export const destinations = [
+  {
+    name: "Goa",
+    href: "/luxury-homes/goa",
+    image:
+      "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?auto=format&fit=crop&w=1200&q=85",
+    note: "Coastal villas and private retreats"
+  },
+  {
+    name: "Dubai",
+    href: "/luxury-homes/dubai",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85",
+    note: "Skyline residences and waterfront estates"
+  },
+  {
+    name: "Mumbai",
+    href: "/luxury-homes/mumbai",
+    image:
+      "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1200&q=85",
+    note: "Penthouses above the bay"
+  },
+  {
+    name: "Alibaug",
+    href: "/luxury-homes/alibaug",
+    image:
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85",
+    note: "Quiet beach houses and weekend homes"
+  },
+  {
+    name: "Ahmedabad",
+    href: "/luxury-homes/ahmedabad",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
+    note: "Private farm estates"
+  },
+  {
+    name: "New Delhi",
+    href: "/luxury-homes/new-delhi",
+    image:
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=85",
+    note: "Grand homes and diplomatic enclaves"
+  }
+];
+
+export const collections = [
+  {
+    name: "Beachfront Villas",
+    href: "/luxury-villas",
+    image:
+      "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    name: "Sky Penthouses",
+    href: "/penthouses",
+    image:
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    name: "Private Estates",
+    href: "/farmhouses",
+    image:
+      "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=85"
+  },
+  {
+    name: "Modern Retreats",
+    href: "/beach-houses",
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85"
+  }
+];

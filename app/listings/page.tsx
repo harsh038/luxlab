@@ -1,57 +1,90 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ListingCard } from "@/components/ListingCard";
-import { SearchBar } from "@/components/SearchBar";
-import { listings } from "@/lib/data";
+import { listings, locations, categories } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Luxury Listings",
-  description: "Browse moderated luxury homes, villas, penthouses, farmhouses, and beach houses."
+  title: "Explore Luxury Residences",
+  description: "Browse luxury homes, villas, penthouses, farmhouses, and beach houses."
 };
 
 export default function ListingsPage() {
   return (
     <>
       <Header />
-      <main className="py-10">
-        <div className="luxury-container">
-          <p className="eyebrow">Real estate</p>
-          <div className="mt-3 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <h1 className="font-display text-5xl font-semibold">Luxury Homes for Sale and Rent</h1>
-              <p className="mt-3 text-graphite">{listings.length} curated listings in Phase 1 inventory</p>
+      <main>
+        <section className="relative min-h-[62vh] overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2200&q=85"
+            alt="Calm architectural luxury interior"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/48" />
+          <div className="luxury-container relative flex min-h-[62vh] items-end pb-16 pt-32 text-white">
+            <div className="max-w-3xl">
+              <p className="eyebrow text-white/68">Explore</p>
+              <h1 className="mt-4 font-display text-6xl font-light leading-none lg:text-8xl">Curated Residences</h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74">
+                A considered selection of private villas, penthouses, beachfront homes, and estates chosen for
+                atmosphere, setting, and architectural quality.
+              </p>
             </div>
-            <select className="focus-ring h-11 rounded-md border border-black/10 bg-white px-3 text-sm">
-              <option>Sort: Premium</option>
-              <option>Recent</option>
-              <option>Price highest first</option>
-              <option>Price lowest first</option>
-            </select>
           </div>
-          <div className="mt-8">
-            <SearchBar />
-          </div>
-          <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
-            <aside className="h-fit rounded-md border border-black/10 bg-white p-4">
-              <p className="font-semibold">Filters</p>
-              {["Beds", "Amenities", "Listing type", "Property status"].map((filter) => (
-                <label key={filter} className="mt-4 grid gap-2 text-sm font-medium">
-                  {filter}
-                  <select className="focus-ring h-10 rounded-md border border-black/10 px-3 text-sm font-normal">
-                    <option>Any</option>
-                    <option>Premium</option>
-                  </select>
-                </label>
-              ))}
-            </aside>
-            <section className="grid gap-6 md:grid-cols-2">
+        </section>
+
+        <section className="section-space">
+          <div className="luxury-container">
+            <div className="grid gap-4 border-y border-border py-6 md:grid-cols-4">
+              <label className="grid gap-2 text-[11px] uppercase tracking-[0.22em] text-graphite">
+                Location
+                <select className="focus-ring h-12 border-0 bg-transparent text-base normal-case tracking-normal text-ink outline-none">
+                  <option>Any destination</option>
+                  {locations.map((location) => (
+                    <option key={location}>{location}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="grid gap-2 text-[11px] uppercase tracking-[0.22em] text-graphite">
+                Price Range
+                <select className="focus-ring h-12 border-0 bg-transparent text-base normal-case tracking-normal text-ink outline-none">
+                  <option>Any budget</option>
+                  <option>$1M - $3M</option>
+                  <option>$3M - $8M</option>
+                  <option>$8M+</option>
+                </select>
+              </label>
+              <label className="grid gap-2 text-[11px] uppercase tracking-[0.22em] text-graphite">
+                Property Type
+                <select className="focus-ring h-12 border-0 bg-transparent text-base normal-case tracking-normal text-ink outline-none">
+                  <option>All collections</option>
+                  {categories.map((category) => (
+                    <option key={category}>{category}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="grid gap-2 text-[11px] uppercase tracking-[0.22em] text-graphite">
+                Bedrooms
+                <select className="focus-ring h-12 border-0 bg-transparent text-base normal-case tracking-normal text-ink outline-none">
+                  <option>Any</option>
+                  <option>3+</option>
+                  <option>5+</option>
+                  <option>7+</option>
+                </select>
+              </label>
+            </div>
+
+            <div className="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
               {listings.map((listing) => (
                 <ListingCard key={listing.slug} listing={listing} />
               ))}
-            </section>
+            </div>
           </div>
-        </div>
+        </section>
       </main>
       <Footer />
     </>

@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { AlertCircle, CheckCircle2, CreditCard, FilePlus2, Home, Inbox, PencilLine } from "lucide-react";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { CreditCard, FilePlus2, Home, Inbox, Settings, UploadCloud } from "lucide-react";
 import { brokerMetrics, listings } from "@/lib/data";
 
 const navItems = [
-  { Icon: Home, label: "Dashboard Home" },
-  { Icon: CreditCard, label: "Credits" },
-  { Icon: FilePlus2, label: "Add Listing" },
+  { Icon: Home, label: "Overview" },
+  { Icon: FilePlus2, label: "Listings" },
+  { Icon: UploadCloud, label: "Add Property" },
   { Icon: Inbox, label: "Inquiries" },
-  { Icon: PencilLine, label: "Edit Requests" }
+  { Icon: CreditCard, label: "Credits" },
+  { Icon: Settings, label: "Settings" }
 ];
+
+const statusLabels: Record<string, string> = {
+  "Pending Approval": "Pending Review",
+  "Pending Edit Approval": "Pending Changes"
+};
 
 export const metadata: Metadata = {
   title: "Broker Dashboard",
@@ -19,98 +23,98 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <>
-      <Header />
-      <main className="py-10">
-        <div className="luxury-container grid gap-8 lg:grid-cols-[260px_1fr]">
-          <aside className="h-fit rounded-md border border-black/10 bg-white p-4">
-            <p className="font-display text-2xl font-semibold">Broker Panel</p>
-            <nav className="mt-5 grid gap-2 text-sm font-medium">
-              {navItems.map(({ Icon, label }) => (
-                <a key={label} className="flex items-center gap-2 rounded-md px-3 py-2 hover:bg-pearl" href={`#${label.toLowerCase().replaceAll(" ", "-")}`}>
-                  <Icon className="h-4 w-4 text-champagne" aria-hidden="true" />
-                  {label}
-                </a>
-              ))}
-            </nav>
-          </aside>
+    <main className="min-h-screen bg-pearl text-ink">
+      <div className="grid min-h-screen lg:grid-cols-[280px_1fr]">
+        <aside className="bg-night p-7 text-white">
+          <p className="font-display text-3xl font-light">Aureluxe</p>
+          <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/38">Broker Workspace</p>
+          <nav className="mt-10 grid gap-1 text-sm">
+            {navItems.map(({ Icon, label }) => (
+              <a
+                key={label}
+                className="flex items-center gap-3 px-3 py-3 text-white/68 transition duration-300 hover:bg-white/8 hover:text-white"
+                href={`#${label.toLowerCase().replaceAll(" ", "-")}`}
+              >
+                <Icon className="h-4 w-4 text-champagne" aria-hidden="true" />
+                {label}
+              </a>
+            ))}
+          </nav>
+        </aside>
 
-          <section>
-            <p className="eyebrow">Lister workspace</p>
-            <h1 className="mt-3 font-display text-5xl font-semibold">Dashboard Home</h1>
-            <div className="mt-8 grid gap-4 md:grid-cols-5">
-              {[
-                ["Credits", brokerMetrics.credits],
-                ["Active", brokerMetrics.activeListings],
-                ["Pending", brokerMetrics.pendingListings],
-                ["Expired", brokerMetrics.expiredListings],
-                ["Inquiries", brokerMetrics.totalInquiries]
-              ].map(([label, value]) => (
-                <div key={label} className="rounded-md border border-black/10 bg-white p-4">
-                  <p className="text-sm text-graphite">{label}</p>
-                  <p className="mt-2 font-display text-3xl font-semibold">{value}</p>
+        <section className="px-6 py-8 sm:px-10 lg:px-14">
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
+            <div>
+              <p className="eyebrow">Overview</p>
+              <h1 className="mt-3 font-display text-5xl font-light">Good afternoon, Coastal Prime Realty</h1>
+            </div>
+            <button className="focus-ring bg-night px-5 py-3 text-sm font-medium text-white transition duration-300 hover:scale-[1.02]">
+              Add Property
+            </button>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-4">
+            {[
+              ["Available credits", brokerMetrics.credits],
+              ["Live listings", brokerMetrics.activeListings],
+              ["Under review", brokerMetrics.pendingListings],
+              ["New inquiries", brokerMetrics.totalInquiries]
+            ].map(([label, value]) => (
+              <div key={label} className="border border-border bg-white/72 p-5">
+                <p className="text-sm text-graphite">{label}</p>
+                <p className="mt-4 font-display text-4xl font-light">{value}</p>
+              </div>
+            ))}
+          </div>
+
+          <section id="add-property" className="mt-10 border border-border bg-white/72 p-7">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+              <div>
+                <p className="font-display text-3xl font-light">Guided Property Submission</p>
+                <p className="mt-2 text-sm leading-6 text-graphite">
+                  Build a listing in calm steps, review the public preview, then submit for editorial review.
+                </p>
+              </div>
+              <button className="focus-ring border border-border px-5 py-3 text-sm font-medium transition hover:bg-pearl">
+                Continue Draft
+              </button>
+            </div>
+            <div className="mt-7 grid gap-3 md:grid-cols-6">
+              {["Basic Information", "Location", "Specifications", "Media Upload", "Preview", "Submit"].map((step, index) => (
+                <div key={step} className="border border-border bg-pearl p-4">
+                  <p className="text-xs text-champagne">0{index + 1}</p>
+                  <p className="mt-2 text-sm font-medium">{step}</p>
                 </div>
               ))}
             </div>
-
-            <section id="add-listing" className="mt-8 rounded-md border border-black/10 bg-white p-6">
-              <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-                <div>
-                  <p className="font-display text-3xl font-semibold">Add Listing Flow</p>
-                  <p className="mt-2 text-graphite">Credits are deducted when the broker submits for approval.</p>
-                </div>
-                <button className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-ink px-5 font-semibold text-white">
-                  <FilePlus2 className="h-4 w-4" aria-hidden="true" />
-                  Start listing
-                </button>
-              </div>
-              <div className="mt-6 grid gap-3 md:grid-cols-4">
-                {["Basic info", "Location", "Specifications", "Media upload", "Preview", "Publish pending approval"].map((step) => (
-                  <div key={step} className="rounded-md border border-black/10 p-4 text-sm font-semibold">
-                    {step}
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="mt-8 rounded-md border border-black/10 bg-white p-6">
-              <p className="font-display text-3xl font-semibold">Listings</p>
-              <div className="mt-5 overflow-x-auto">
-                <table className="w-full min-w-[720px] text-left text-sm">
-                  <thead className="border-b border-black/10 text-graphite">
-                    <tr>
-                      <th className="py-3">Property</th>
-                      <th>Status</th>
-                      <th>Price</th>
-                      <th>Inquiries</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {listings.map((listing) => (
-                      <tr key={listing.slug} className="border-b border-black/5">
-                        <td className="py-4 font-semibold">{listing.title}</td>
-                        <td>
-                          <span className="inline-flex items-center gap-1 rounded-md bg-pearl px-2 py-1 text-xs font-semibold">
-                            {listing.status === "Live" ? <CheckCircle2 className="h-3 w-3 text-moss" /> : <AlertCircle className="h-3 w-3 text-oxblood" />}
-                            {listing.status}
-                          </span>
-                        </td>
-                        <td>{listing.price}</td>
-                        <td>{listing.inquiries}</td>
-                        <td>
-                          <button className="focus-ring rounded-md border border-black/10 px-3 py-2 font-semibold">Edit</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+            <div className="mt-7 border border-dashed border-border bg-pearl p-8 text-center">
+              <UploadCloud className="mx-auto h-8 w-8 text-champagne" aria-hidden="true" />
+              <p className="mt-4 font-display text-2xl font-light">Drag property photography here</p>
+              <p className="mt-2 text-sm text-graphite">Large landscape images create the strongest public preview.</p>
+            </div>
           </section>
-        </div>
-      </main>
-      <Footer />
-    </>
+
+          <section id="listings" className="mt-10">
+            <p className="font-display text-3xl font-light">Listings</p>
+            <div className="mt-6 grid gap-4">
+              {listings.map((listing) => (
+                <article key={listing.slug} className="grid gap-4 border border-border bg-white/72 p-5 md:grid-cols-[1fr_auto] md:items-center">
+                  <div>
+                    <p className="font-display text-2xl font-light">{listing.title}</p>
+                    <p className="mt-2 text-sm text-graphite">{listing.area}, {listing.city} / {listing.price}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="bg-linen px-3 py-2 text-xs text-graphite">
+                      {statusLabels[listing.status] ?? listing.status}
+                    </span>
+                    <button className="focus-ring border border-border px-4 py-2 text-sm font-medium">Edit</button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
   );
 }

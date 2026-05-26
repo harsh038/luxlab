@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  color: #171717;
-  background: #f7f4ee;
+  color: #1A1A1A;
+  background: #F8F5F1;
 }
 
 * {
@@ -17,10 +17,8 @@ html {
 
 body {
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(247, 244, 238, 0.94), rgba(255, 255, 255, 0.96)),
-    #f7f4ee;
-  color: #171717;
+  background: #F8F5F1;
+  color: #1A1A1A;
 }
 
 a {
@@ -40,9 +38,21 @@ textarea {
 }
 
 .luxury-container {
-  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
 }
 
 .eyebrow {
-  @apply text-xs font-semibold uppercase tracking-[0.22em] text-champagne;
+  @apply text-[11px] font-medium uppercase tracking-[0.24em] text-champagne;
+}
+
+.section-space {
+  @apply py-24 lg:py-32;
+}
+
+.image-zoom {
+  @apply transition duration-700 ease-out group-hover:scale-[1.035];
+}
+
+.link-underline {
+  @apply relative after:absolute after:bottom-[-5px] after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
 }

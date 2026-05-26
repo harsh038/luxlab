@@ -9,19 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#171717",
-        pearl: "#f7f4ee",
-        graphite: "#343434",
-        champagne: "#c7a66a",
+        ink: "#1A1A1A",
+        pearl: "#F8F5F1",
+        linen: "#EFE8DE",
+        graphite: "#6B6B6B",
+        champagne: "#B08D57",
+        border: "#DDD6CB",
+        night: "#111111",
         moss: "#536854",
         oxblood: "#6f3030"
       },
       fontFamily: {
-        sans: ["Arial", "Helvetica", "sans-serif"],
-        display: ["Georgia", "Times New Roman", "serif"]
+        sans: ["Inter", "Manrope", "Arial", "Helvetica", "sans-serif"],
+        display: ["Cormorant Garamond", "Playfair Display", "Georgia", "Times New Roman", "serif"]
       },
       boxShadow: {
-        luxe: "0 20px 60px rgba(23, 23, 23, 0.12)"
+        luxe: "0 26px 80px rgba(17, 17, 17, 0.16)",
+        hush: "0 16px 44px rgba(17, 17, 17, 0.08)"
       }
     }
   },
